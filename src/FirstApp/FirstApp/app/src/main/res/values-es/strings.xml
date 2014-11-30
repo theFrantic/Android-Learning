@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FirstApp</string>
+    <string name="title_activity_main">Principal</string>
+    <string name="hello_world">Hola Mundo!</string>
+    <string name="action_settings">Configuración</string>
+
+    <string name="textbox_initial_message">Hey! Haz click en el botón</string>
+    <string name="textbox_final_message">Haz hecho click!</string>
+    <string name="button_label">Hazme click</string>
+    <string name="users_name_edit_text">Tu nombre</string>
+    <string name="happy_question">Estás contento?</string>
+    <string name="answer_yes_button">Si</string>
+    <string name="answer_no_button">No</string>
+
+</resources>

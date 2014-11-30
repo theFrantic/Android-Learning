@@ -9,5 +9,9 @@
     <string name="textbox_initial_message">Hey! Click the bottom below</string>
     <string name="textbox_final_message">You\'ve clicked!</string>
     <string name="button_label">Click on me</string>
+    <string name="users_name_edit_text">Your Name</string>
+    <string name="happy_question">Are you happy?</string>
+    <string name="answer_yes_button">Yes</string>
+    <string name="answer_no_button">No</string>
 
 </resources>
