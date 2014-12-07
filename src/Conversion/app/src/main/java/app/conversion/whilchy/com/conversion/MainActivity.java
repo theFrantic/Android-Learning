@@ -70,6 +70,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelectedInSpinner = parent.getItemAtPosition(position).toString();
 
+                // checks if converting from teaspoons so I use the right conversion
                 checkIfConvertingFromTsp(itemSelectedInSpinner);
             }
 
@@ -80,6 +81,112 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    public void checkIfConvertingFromTsp(String currentUnit) {
+        if(currentUnit.equals("teaspoon")){
+            updateUnitTypeUsingTsp(Quantity.Unit.tsp);
+        }
+        else {
+            if(currentUnit.equals("tablespoon")){
+                updateUnitTypeUsingOther(Quantity.Unit.tbs);
+            }
+            else if(currentUnit.equals("cup")){
+                updateUnitTypeUsingOther(Quantity.Unit.cup);
+            }
+            else if(currentUnit.equals("ounce")){
+                updateUnitTypeUsingOther(Quantity.Unit.oz);
+            }
+            else if(currentUnit.equals("pint")){
+                updateUnitTypeUsingOther(Quantity.Unit.pint);
+            }
+            else if(currentUnit.equals("quart")){
+                updateUnitTypeUsingOther(Quantity.Unit.quart);
+            }
+            else if(currentUnit.equals("gallon")){
+                updateUnitTypeUsingOther(Quantity.Unit.gallon);
+            }
+            else if(currentUnit.equals("pound")){
+                updateUnitTypeUsingOther(Quantity.Unit.pound);
+            }
+            else if(currentUnit.equals("millimeter")){
+                updateUnitTypeUsingOther(Quantity.Unit.ml);
+            }
+            else if(currentUnit.equals("liter")){
+                updateUnitTypeUsingOther(Quantity.Unit.liter);
+            }
+            else if(currentUnit.equals("milligram")){
+                updateUnitTypeUsingOther(Quantity.Unit.ml);
+            }
+            else if(currentUnit.equals("kilogram")){
+                updateUnitTypeUsingOther(Quantity.Unit.kg);
+            }
+        }
+    }
+
+    public void updateUnitTypeUsingTsp(Quantity.Unit currentUnit){
+        double doubleConvert = Double.parseDouble(amountTextView.getText().toString());
+
+        String teaspoonValueAndUnit = doubleConvert + " tsp";
+        teaspoonTextView.setText(teaspoonValueAndUnit);
+
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.tbs, tablespoonTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.cup, cupTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.oz, ounceTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.pint, pintTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.quart, quartTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.gallon, gallonTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.pound, poundTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.ml, milliliterTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.liter, literTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.mg, milligramTextView);
+        updateUnitTextFieldUsingTsp(doubleConvert, Quantity.Unit.kg, kilogramTextView);
+    }
+
+    public void updateUnitTextFieldUsingTsp(double doubleToConvert, Quantity.Unit unitConvertingTo, TextView theTextView){
+        Quantity unitQuantity = new Quantity(doubleToConvert, Quantity.Unit.tsp);
+
+        String tempUnit = unitQuantity.to(unitConvertingTo).toString();
+        theTextView.setText(tempUnit);
+    }
+
+    public void updateUnitTypeUsingOther(Quantity.Unit currentUnit) {
+        double doubleToConvert = Double.parseDouble(amountTextView.getText().toString());
+        Quantity currentQuantitySelected = new Quantity(doubleToConvert, currentUnit);
+        String valueInTeaspoons = currentQuantitySelected.to(Quantity.Unit.tsp).toString();
+        teaspoonTextView.setText(valueInTeaspoons);
+
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.tbs, tablespoonTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.cup, cupTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.oz, ounceTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.pint, pintTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.quart, quartTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.gallon, gallonTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.pound, poundTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.ml, milliliterTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.liter, literTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.mg, milligramTextView);
+        updateUnitTextFieldUsingTsp(doubleToConvert, currentUnit, Quantity.Unit.kg, kilogramTextView);
+
+        if(currentUnit.name().equals(currentQuantitySelected.unit.name())) {
+            String currentUnitTextViewText = doubleToConvert + " " + currentQuantitySelected.unit.name();
+
+            String currentTextViewName = currentQuantitySelected.unit.name() +
+                    "_text_view";
+
+            int currentId = getResources().getIdentifier(currentTextViewName, "id", MainActivity.this.getPackageName());
+            TextView currentTextView = (TextView) findViewById(currentId);
+            currentTextView.setText(currentUnitTextViewText);
+        }
+    }
+
+    public void updateUnitTextFieldUsingTsp(double doubleToConvert,
+                                            Quantity.Unit currentUnit,
+                                            Quantity.Unit preferredUnit,
+                                            TextView targetTextView) {
+        Quantity currentQuantitySelected = new Quantity(doubleToConvert, currentUnit);
+        String tempTextViewText = currentQuantitySelected.to(Quantity.Unit.tsp).to(preferredUnit).toString();
+
+        targetTextView.setText(tempTextViewText);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
