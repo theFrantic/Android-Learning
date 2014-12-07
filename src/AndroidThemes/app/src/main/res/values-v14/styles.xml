@@ -1,0 +1,86 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Theme customization for Android API 14+ -->
+
+        <!-- http://developer.android.com/reference/android/R.styleable.html#Theme
+        Provides a list of attributes you can override -->
+
+        <!-- You can change the text color in all widgets across the whole app -->
+        <item name="android:editTextColor">#ffb62a23</item>
+        <item name="android:textColorPrimary">#ffb62a23</item>
+        <item name="android:textColorSecondary">#ffb62a23</item>
+        <item name="android:textColorTertiary">#ffb62a23</item>
+        <item name="android:textColorPrimaryInverse">#ffb62a23</item>
+        <item name="android:textColorSecondaryInverse">#ffb62a23</item>
+        <item name="android:textColorTertiaryInverse">#ffb62a23</item>
+
+        <!-- You can change the background -->
+        <item name="android:windowBackground">#ffedeba6</item>
+
+        <!-- Change the font family with API 16+
+        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="sans-serif-thin" -->
+        <item name="android:fontFamily">sans-serif</item>
+
+        <item name="android:textStyle">bold</item>
+
+        <!-- More font stuff from URL above
+        android:fontFamily	 Font family (named by string) for the text.
+        android:shadowColor	 Place a shadow of the specified color behind the text.
+        android:shadowDx	 Horizontal offset of the shadow.
+        android:shadowDy	 Vertical offset of the shadow.
+        android:shadowRadius	 Radius of the shadow.
+        android:textAllCaps	 Present the text in ALL CAPS.
+        android:textColor	 Text color.
+        android:textColorHighlight	 Color of the text selection highlight.
+        android:textColorHint	 Color of the hint text.
+        android:textColorLink	 Color of the links.
+        android:textSize	 Size of the text.
+        android:textStyle	 Style (bold, italic, bolditalic) for the text.
+        android:typeface	 Typeface (normal, sans, serif, monospace) for the text.
+        -->
+
+    </style>
+
+    <!-- You can define styles for single widgets. You can then assign that style to the
+     element in activity_my.xml with style="@style/TextView" for example -->
+    <style name="TextView1">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- You can inherit a style you defined as well. You can also override parts.
+     You can't do this with Android styles, but only with yours. -->
+    <style name="EditText" parent="@style/TextView1">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- You can both inherit and add to a style as well -->
+    <style name="TextView1.TextView2">
+        <item name="android:padding">30dp</item>
+    </style>
+
+    <!-- You just keep adding periods to add to additional styles -->
+    <style name="TextView1.TextView2.TextView3">
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <!-- You can also define styles that are applied automatically without needing
+    to define style in activity_my by overriding settings
+     -->
+
+    <!--
+    <style name="TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">55sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    -->
+
+    <!-- In the graphical layout you can try different default themes
+    by clicking on the Theme button
+    -->
+
+</resources>
